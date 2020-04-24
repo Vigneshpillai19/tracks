@@ -5,23 +5,26 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-router.post('/signup/', async (req, res) => {
+router.post('/signup', async (req, res) => {
     const { email, password } = req.body;
     try{
+        // console.log({email, password});
         const user = new User({ email, password });
         await user.save();
 
+        // console.log('Jwt Generate');
+
         const token = jwt.sign({ userId:user._id }, 'MY_SECRET_KEY');
         res.send({ token });
+
+        // console.log('End..');
         
     } catch(err){
         return res.status(422).send(err.message);
     }
-
-    res.send('You made a Post request...');
 });
 
-router.post('/signin/', async (req, res) => {
+router.post('/signin', async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password){
