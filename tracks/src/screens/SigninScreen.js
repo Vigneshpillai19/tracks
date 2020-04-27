@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 import { NavigationEvents } from 'react-navigation';
 
@@ -10,23 +10,25 @@ const SigninScreen = () => {
     const { state, signin, remove_error } = useContext(AuthContext);
 
     return (
-        <View style={styles.container}>
-            <NavigationEvents
-                // onWillBlur={() => remove_error()} Will work
-                onWillBlur = {remove_error}
-                // onWillBlur = {() => remove_error} won't work
-            />
-            <AuthForm 
-                headerText="Sign In to Your Account"
-                submitButtonText="Sign In"
-                onSubmit={({email, password}) => signin({ email, password })}
-                errorMsg={state.errorMsg}
-            />
-            <NavLink
-                navText="Not Registered? Sign Up"
-                routeName="Signup"
-            />
-        </View>
+            <View style={styles.container}>
+                <KeyboardAvoidingView behavior='height'>
+                    <NavigationEvents
+                        // onWillBlur={() => remove_error()} Will work
+                        onWillBlur = {remove_error}
+                        // onWillBlur = {() => remove_error} won't work
+                    />
+                    <AuthForm 
+                        headerText="Sign In to Your Account"
+                        submitButtonText="Sign In"
+                        onSubmit={({email, password}) => signin({ email, password })}
+                        errorMsg={state.errorMsg}
+                    />
+                    <NavLink
+                        navText="Not Registered? Sign Up"
+                        routeName="Signup"
+                    />
+                </KeyboardAvoidingView>
+            </View>
     );
 };
 

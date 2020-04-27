@@ -11,21 +11,21 @@ const SignupScreen = ({ navigation }) => {
     const { state, signup, remove_error } = useContext(AuthContext);
 
     return (
-        <View style={styles.container}>
-            <NavigationEvents
-                onWillBlur={() => remove_error()}
-            />
-            <AuthForm
-                headerText="Sign Up for Tracker"
-                submitButtonText="Sign Up"
-                onSubmit={({email, password}) => signup({ email, password })}
-                errorMsg={state.errorMsg}
-            />
-            <NavLink
-                navText="Already have an account? Sign in instead"
-                routeName="Signin"
-            />
-        </View>
+            <View style={styles.container}>
+                <NavigationEvents
+                    onWillBlur={() => remove_error()}
+                />
+                <AuthForm
+                    headerText="Sign Up for Tracker"
+                    submitButtonText="Sign Up"
+                    onSubmit={({email, password}) => signup({ email, password })}
+                    errorMsg={state.errorMsg}
+                />
+                <NavLink
+                    navText="Already have an account? Sign in instead"
+                    routeName="Signin"
+                />
+            </View>
     );
 };
 
