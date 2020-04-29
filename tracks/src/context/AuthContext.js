@@ -49,9 +49,9 @@ const signin = (dispatch) => {
             await AsyncStorage.setItem('token', token);
             dispatch({ type: 'signin', payload: token });
             
-            console.log('Navigate Start');
+            // console.log('Navigate Start');
             navigate('TrackList');
-            console.log('Navigate End');
+            // console.log('Navigate End');
         }catch(err){
             console.log(err.message);
             dispatch({ type: 'add_error', payload: 'Something went wrong with SignIn' });
@@ -68,9 +68,9 @@ const signup = (dispatch) => {
             await AsyncStorage.setItem('token', response.data.token);
             dispatch({ type: 'singup', payload: response.data.token });
             
-            console.log('navigate start');
+            // console.log('navigate start');
             navigate('TrackList');
-            console.log('navigate end');
+            // console.log('navigate end');
             
         } catch(err){
             console.log(err.message);
